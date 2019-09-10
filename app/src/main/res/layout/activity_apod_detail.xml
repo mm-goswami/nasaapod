@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+                name="apod"
+                type="com.manmohan.nasaapod.data.api.model.Apod"/>
+
+    </data>
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".ui.apoddetail.ApodDetailActivity">
+
+            <com.manmohan.nasaapod.ui.utils.ZoomableImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/image_min_height"
+                    android:id="@+id/image"
+                    app:imageUrl="@{apod.url}"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                    android:id="@+id/read_mark"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@drawable/ic_done_green_24dp"
+                    android:layout_margin="@dimen/mid_margin"
+                    app:visibility="@{apod.isRead}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:id="@+id/title"
+                      tools:text="titile of apod"
+                      android:text="@{apod.title}"
+                      app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/image" style="@style/apodtextsytle.bold"/>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:id="@+id/detail"
+                      tools:text="titile of apod"
+                      android:text="@{apod.explanation}"
+                      style="@style/apodtextsytle"
+                      app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/title"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/copyright_text"
+                      android:text="copy right : "
+                      style="@style/apodtextsytle"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintEnd_toStartOf="@+id/copyright"
+                      app:layout_constraintTop_toBottomOf="@+id/detail"/>
+
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                      android:id="@+id/copyright"
+                      tools:text="nasa"
+                      android:text="@{apod.copyright}"
+                      style="@style/apodtextsytle"
+                      app:layout_constraintStart_toEndOf="@id/copyright_text"
+                      app:layout_constraintEnd_toStartOf="@+id/date"
+                      app:layout_constraintTop_toBottomOf="@+id/detail"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/date"
+                      tools:text="23-09-2019"
+                      app:layout_constraintStart_toEndOf="@id/copyright"
+                      style="@style/apodtextsytle.grey"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/detail"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

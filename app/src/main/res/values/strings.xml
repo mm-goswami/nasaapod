@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Nasa Apod</string>
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Date</string>
+</resources>
